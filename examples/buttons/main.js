@@ -1,10 +1,21 @@
-# native-component
-Use native webcomponent to build your next app.
+import Component from "../../native-component.min.js";
 
-Example:
+class ColorButton extends Component {
+    init() {
+        this.number = null
+        this.addEventListener("click", (event) => {
+            console.log("Click working")
+        })
+    }
 
-```
-import {Component} from "webcomponent"
+    static get observedAttributes() {
+        return ['number']
+    }
+
+    dom() {
+        return `<button>${this.getProp('number')}</button>`
+    }
+}
 
 class ColorDiv extends Component {
     init() {
@@ -34,4 +45,4 @@ class ColorDiv extends Component {
 }
 
 customElements.define('color-div', ColorDiv)
-```
+customElements.define('color-btn', ColorButton)
