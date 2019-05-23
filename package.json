@@ -1,0 +1,26 @@
+{
+  "name": "native-component",
+  "version": "1.0.0",
+  "description": "Native webcomponent microframework based of ES6 web-components.",
+  "main": "native-component.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wishabhilash/native-component.git"
+  },
+  "keywords": [
+    "component",
+    "es6"
+  ],
+  "author": "Abhilash Nanda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wishabhilash/native-component/issues"
+  },
+  "homepage": "https://github.com/wishabhilash/native-component#readme"
+}
