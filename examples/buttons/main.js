@@ -1,4 +1,4 @@
-import Component from "../../native-component.min.js";
+import Component from "../../component.min.js";
 
 class ColorButton extends Component {
     init() {
