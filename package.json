@@ -1,6 +1,6 @@
 {
   "name": "es6-native-component",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Native webcomponent microframework based of ES6 web-components.",
   "main": "component.js",
   "directories": {

@@ -4,7 +4,7 @@ Use native webcomponent to build your next app.
 Example:
 
 ```
-import {Component} from "webcomponent"
+import {Component} from "es6-native-component"
 
 class ColorDiv extends Component {
     init() {
