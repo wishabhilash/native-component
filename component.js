@@ -106,14 +106,15 @@ let ComponentMixin = (superclass) => class extends superclass {
     }
     
     // Overrides
+    init() {}
     dom() {}
     style() {}
+    listeners(){return []}
     
     // Events
     onAttributeChange(name, oldValue, newValue){}
     onInsert(){}
     onRemove(){}
-    listeners(){return []}
 };
 
 class Component extends ComponentMixin(HTMLElement) {}
