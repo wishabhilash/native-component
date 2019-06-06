@@ -3,9 +3,6 @@ import Component from "../../component.min.js";
 class ColorButton extends Component {
     init() {
         this.number = null
-        this.addEventListener("click", (event) => {
-            console.log("Click working")
-        })
     }
 
     static get observedAttributes() {
@@ -24,6 +21,16 @@ class ColorDiv extends Component {
 
     static get observedAttributes() {
         return ['color']
+    }
+
+    listeners() {
+        return [
+            ['color-btn', 'click', this.showAlert]
+        ]
+    }
+
+    showAlert() {
+        alert("Am working!!!")
     }
 
     dom() {

@@ -15,6 +15,16 @@ class ColorDiv extends Component {
         return ['color']
     }
 
+    listeners() {
+        return [
+            ['color-btn', 'click', this.showAlert]
+        ]
+    }
+
+    showAlert() {
+        alert("Am working!!!")
+    }
+
     dom() {
         return `
             <div class="cd">

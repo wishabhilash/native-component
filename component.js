@@ -3,6 +3,7 @@ let ComponentMixin = (superclass) => class extends superclass {
         super()
         this.init()
         this._prop = this._initProxy()
+        this._listenersToRemove = []
         this.shadow = this.attachShadow({mode: 'open'})
         this.render()
     }
@@ -34,7 +35,7 @@ let ComponentMixin = (superclass) => class extends superclass {
     }
 
     _getPropNames() {
-        return Object.getOwnPropertyNames(this).filter((e)=>e!='_prop')
+        return Object.getOwnPropertyNames(this).filter((e)=>!(e in {'_prop': null, '_listeners': null}))
     }
 
     _collectAndDeleteProperties() {
@@ -61,7 +62,34 @@ let ComponentMixin = (superclass) => class extends superclass {
     }
     
     connectedCallback() {
+        this._bindListeners()
         this.onInsert()
+    }
+
+    disconnectedCallback() {
+        this._unbindListeners()
+        this.onRemove()
+    }
+
+    _bindListeners() {
+        let self = this
+        let listenerList = this.listeners()
+        listenerList.forEach((listener) => {
+            let target = () => listener[2]()
+            self.shadowRoot.querySelector(listener[0])
+                .addEventListener(listener[1], target, false)
+            let _l = [...listener]
+            _l.push(target)
+            self._listenersToRemove.push(_l)
+        })
+    }
+
+    _unbindListeners() {
+        let self = this
+        this._listenersToRemove.forEach((listener) => {
+            self.shadowRoot.querySelector(listener[0])
+                .removeEventListener(listener[1], listener[3], false)
+        })
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -77,7 +105,6 @@ let ComponentMixin = (superclass) => class extends superclass {
         this.shadow.appendChild(style)
     }
     
-
     // Overrides
     dom() {}
     style() {}
@@ -85,6 +112,8 @@ let ComponentMixin = (superclass) => class extends superclass {
     // Events
     onAttributeChange(name, oldValue, newValue){}
     onInsert(){}
+    onRemove(){}
+    listeners(){return []}
 };
 
 class Component extends ComponentMixin(HTMLElement) {}
