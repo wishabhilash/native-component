@@ -17,7 +17,7 @@ class ColorDiv extends Component {
 
     listeners() {
         return [
-            ['color-btn', 'click', this.showAlert]
+            ['color-btn', 'click', 'showAlert']
         ]
     }
 
@@ -41,6 +41,11 @@ class ColorDiv extends Component {
             }
         `
     }
+
+    // Overrides
+    onAttributeChange(name, oldValue, newValue){}
+    onInsert(){}
+    onRemove(){}
 }
 
 customElements.define('color-div', ColorDiv)

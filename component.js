@@ -75,7 +75,7 @@ let ComponentMixin = (superclass) => class extends superclass {
         let self = this
         let listenerList = this.listeners()
         listenerList.forEach((listener) => {
-            let target = () => listener[2]()
+            let target = () => self[listener[2]]()
             self.shadowRoot.querySelector(listener[0])
                 .addEventListener(listener[1], target, false)
             let _l = [...listener]
